@@ -59,7 +59,7 @@ export default function Hero() {
             <div style={{ position: 'absolute', top: '-15px', left: '-15px', width: '40px', height: '40px', borderTop: '2px solid #00f3ff', borderLeft: '2px solid #00f3ff', zIndex: 2 }}></div>
             <div style={{ position: 'absolute', bottom: '-15px', right: '-15px', width: '40px', height: '40px', borderBottom: '2px solid #00f3ff', borderRight: '2px solid #00f3ff', zIndex: 2 }}></div>
             <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '10px', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}>
-              <img src="src/assets/IMG_6885.jpg" alt="Ashmit Cajla" style={{ width: '100%', height: 'auto', borderRadius: '6px', display: 'block', filter: 'grayscale(10%) contrast(1.05)' }} />
+              <img src="../assets/IMG_6885.jpg" alt="Ashmit Cajla" style={{ width: '100%', height: 'auto', borderRadius: '6px', display: 'block', filter: 'grayscale(10%) contrast(1.05)' }} />
             </div>
           </div>
         </div>
