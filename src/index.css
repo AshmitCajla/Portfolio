@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@300;400;500&display=swap');
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; 
+}
+
+body, html {
+  width: 100%;
+  /* Switched from pure black to a premium, deep obsidian/slate */
+  background-color: #030305; 
+  color: #ededed;
+  font-family: 'Manrope', -apple-system, sans-serif; /* Sleek new body font */
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* Apply the architectural font to all headings */
+h1, h2, h3, h4, h5, .nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+section {
+  scroll-margin-top: 120px; 
+}
+
+.section-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  padding-top: 40px; 
+  padding-bottom: 40px;
+}
+
+/* Smoother, premium reveal physics */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
