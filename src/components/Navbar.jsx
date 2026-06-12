@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <div style={{
       position: 'fixed',
-      top: '30px',
+      top: '12px', /* REDUCED TOP GAP */
       left: '0',
       width: '100%',
       display: 'flex',
@@ -12,16 +12,27 @@ export default function Navbar() {
       zIndex: 100,
       pointerEvents: 'none',
     }}>
-      <nav style={{
+      
+      {/* Responsive Mobile Styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          .nav-container { padding: 12px 20px !important; width: 92% !important; }
+          .nav-links { display: none !important; } /* Hides center links on mobile */
+          .nav-logo { font-size: 1.1rem !important; }
+          .nav-btn { padding: 8px 18px !important; font-size: 0.85rem !important; }
+        }
+      `}</style>
+
+      <nav className="nav-container" style={{
         pointerEvents: 'auto',
         width: '90%',
-        maxWidth: '1000px', /* Made wider */
-        background: 'rgba(10, 10, 12, 0.8)', /* Deeper glass */
+        maxWidth: '1000px',
+        background: 'rgba(10, 10, 12, 0.8)',
         backdropFilter: 'blur(24px)',
         WebkitBackdropFilter: 'blur(24px)',
         border: '1px solid rgba(255, 255, 255, 0.1)',
         borderRadius: '50px',
-        padding: '16px 40px', /* Taller and wider padding */
+        padding: '16px 40px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -30,6 +41,7 @@ export default function Navbar() {
         
         {/* Left: Logo */}
         <div 
+          className="nav-logo"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           style={{
             fontFamily: '"Space Grotesk", sans-serif',
@@ -43,7 +55,7 @@ export default function Navbar() {
         </div>
 
         {/* Center: Links */}
-        <div style={{ display: 'flex', gap: '40px' }}>
+        <div className="nav-links" style={{ display: 'flex', gap: '40px' }}>
           {['Experience', 'Projects'].map((name) => (
             <a
               key={name}
@@ -64,8 +76,9 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right: Normal CTA Button */}
+        {/* Right: CTA Button */}
         <a 
+          className="nav-btn"
           href="#contact"
           style={{
             textDecoration: 'none',

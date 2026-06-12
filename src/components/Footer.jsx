@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 
 // Command rows
-const TerminalLink = ({
-  platform,
-  handle,
-  link,
-  target,
-  rel,
-}) => {
+const TerminalLink = ({ platform, handle, link, target, rel }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -20,9 +14,7 @@ const TerminalLink = ({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '20px',
-        background: isHovered
-          ? 'rgba(255, 255, 255, 0.05)'
-          : 'transparent',
+        background: isHovered ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
         borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
         color: '#fff',
         fontFamily: '"Space Grotesk", sans-serif',
@@ -33,38 +25,11 @@ const TerminalLink = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '15px',
-        }}
-      >
-        <span
-          style={{
-            color: isHovered ? '#fff' : '#666',
-            transition: 'color 0.3s ease',
-          }}
-        >
-          ↳
-        </span>
-        <span
-          style={{
-            fontSize: '1.2rem',
-            fontWeight: 500,
-          }}
-        >
-          {platform}
-        </span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+        <span style={{ color: isHovered ? '#fff' : '#666', transition: 'color 0.3s ease' }}>↳</span>
+        <span style={{ fontSize: '1.2rem', fontWeight: 500 }}>{platform}</span>
       </div>
-
-      <span
-        style={{
-          fontFamily: '"Manrope", sans-serif',
-          fontSize: '0.9rem',
-          color: '#888',
-        }}
-      >
+      <span style={{ fontFamily: '"Manrope", sans-serif', fontSize: '0.9rem', color: '#888' }}>
         {handle}
       </span>
     </a>
@@ -83,18 +48,15 @@ const TerminalChat = () => {
     const data = new FormData(form);
 
     try {
-      // Sends data to Formspree silently in the background
       const response = await fetch(form.action, {
         method: form.method,
         body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       });
       
       if (response.ok) {
         setStatus('sent');
-        form.reset(); // Clears the inputs upon success
+        form.reset(); 
         setTimeout(() => setStatus('idle'), 3000);
       } else {
         setStatus('idle');
@@ -117,7 +79,6 @@ const TerminalChat = () => {
         padding: '30px', display: 'flex', flexDirection: 'column', gap: '15px',
       }}
     >
-      {/* Added name="email" so Formspree registers the sender */}
       <input 
         name="email"
         className="bright-placeholder"
@@ -127,14 +88,13 @@ const TerminalChat = () => {
         style={{ 
           width: '100%', background: 'rgba(255, 255, 255, 0.06)', 
           border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '12px',
-          color: '#fff', padding: '10px', fontFamily: '"Manrope", sans-serif', 
+          color: '#fff', padding: '16px', fontFamily: '"Manrope", sans-serif', 
           fontSize: '0.95rem', outline: 'none', transition: 'border-color 0.3s ease'
         }} 
         onFocus={(e) => e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)'}
         onBlur={(e) => e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)'}
       />
       
-      {/* Added name="message" so Formspree registers the body content */}
       <textarea 
         name="message"
         className="bright-placeholder"
@@ -143,14 +103,14 @@ const TerminalChat = () => {
         style={{ 
           width: '100%', background: 'rgba(255, 255, 255, 0.06)', 
           border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '12px',
-          color: '#fff', padding: '10px', fontFamily: '"Manrope", sans-serif', 
+          color: '#fff', padding: '16px', fontFamily: '"Manrope", sans-serif', 
           fontSize: '0.95rem', outline: 'none', resize: 'none', transition: 'border-color 0.3s ease'
         }}
         onFocus={(e) => e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)'}
         onBlur={(e) => e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)'}
       ></textarea>
       
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px', flexWrap: 'wrap', gap: '15px' }}>
         <span style={{ fontFamily: '"Manrope", sans-serif', fontSize: '0.8rem', color: '#666' }}>End-to-End Encrypted</span>
         <button 
           type="submit" disabled={status !== 'idle'}
@@ -159,6 +119,7 @@ const TerminalChat = () => {
             padding: '12px 28px', borderRadius: '50px', fontFamily: '"Space Grotesk", sans-serif', 
             fontWeight: 600, fontSize: '0.95rem', cursor: status === 'idle' ? 'pointer' : 'default', 
             transition: 'all 0.3s ease',
+            whiteSpace: 'nowrap'
           }}
           onMouseEnter={(e) => { if(status === 'idle') e.target.style.transform = 'translateY(-2px)' }}
           onMouseLeave={(e) => { if(status === 'idle') e.target.style.transform = 'translateY(0)' }}
@@ -174,7 +135,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={{ padding: '120px 20px 40px 20px', position: 'relative', zIndex: 2 }}>
+    <footer className="footer-wrapper" style={{ padding: '120px 20px 40px 20px', position: 'relative', zIndex: 2 }}>
       
       <style>{`
         .bright-placeholder::placeholder { 
@@ -185,11 +146,18 @@ export default function Footer() {
           0% { opacity: 0.4; box-shadow: 0 0 5px rgba(0,255,136,0.2); }
           100% { opacity: 1; box-shadow: 0 0 15px rgba(0,255,136,0.8); }
         }
+        /* Mobile Responsive Fixes */
+        @media (max-width: 768px) {
+          .footer-wrapper { padding: 60px 20px 40px 20px !important; }
+          .footer-grid { grid-template-columns: 1fr !important; gap: 50px !important; }
+          .footer-bottom { flex-direction: column !important; text-align: center !important; gap: 15px !important; }
+        }
       `}</style>
 
-      <div style={{
+      {/* Removed the minmax(400px) that was breaking mobile screens */}
+      <div className="footer-grid" style={{
         maxWidth: '1100px', margin: '0 auto', display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '80px', marginBottom: '100px'
+        gridTemplateColumns: 'repeat(2, 1fr)', gap: '80px', marginBottom: '100px'
       }}>
         
         {/* Left Column */}
@@ -206,7 +174,6 @@ export default function Footer() {
         {/* Right Column */}
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           
-          {/* Catchy Network Status Pill */}
           <div style={{ 
             display: 'inline-flex', alignItems: 'center', gap: '12px',
             fontFamily: '"Space Grotesk", sans-serif', fontSize: '0.95rem',
@@ -224,46 +191,20 @@ export default function Footer() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <TerminalLink
-              platform="LinkedIn"
-              handle="@ashmitcajla"
-              link="https://www.linkedin.com/in/ashmitcajla/"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-
-            <TerminalLink
-              platform="GitHub"
-              handle="@ashmitcajla"
-              link="https://github.com/AshmitCajla"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-
-            <TerminalLink
-              platform="Kaggle"
-              handle="@ashmitcajla"
-              link="https://www.kaggle.com/ashmitcajla"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-
-            <TerminalLink
-              platform="Resume"
-              handle="Download PDF"
-              link="https://drive.google.com/file/d/1NM9maQnZMelt6aaq0cJ3o_omglegQnKM/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
+            <TerminalLink platform="LinkedIn" handle="@ashmitcajla" link="https://www.linkedin.com/in/ashmitcajla/" target="_blank" rel="noopener noreferrer" />
+            <TerminalLink platform="GitHub" handle="@ashmitcajla" link="https://github.com/AshmitCajla" target="_blank" rel="noopener noreferrer" />
+            <TerminalLink platform="Kaggle" handle="@ashmitcajla" link="https://www.kaggle.com/ashmitcajla" target="_blank" rel="noopener noreferrer" />
+            <TerminalLink platform="Resume" handle="Download PDF" link="https://drive.google.com/file/d/1NM9maQnZMelt6aaq0cJ3o_omglegQnKM/view?usp=sharing" target="_blank" rel="noopener noreferrer" />
           </div>
         </div>
 
       </div>
 
       {/* Bottom Data Bar */}
-      <div style={{ 
+      <div className="footer-bottom" style={{ 
         maxWidth: '1100px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', 
-        alignItems: 'center', paddingTop: '30px', fontFamily: '"Manrope", sans-serif', flexWrap: 'wrap', gap: '20px'
+        alignItems: 'center', paddingTop: '30px', fontFamily: '"Manrope", sans-serif', flexWrap: 'wrap', gap: '20px',
+        borderTop: '1px solid rgba(255,255,255,0.05)'
       }}>
         <div style={{ color: '#555', fontSize: '0.9rem' }}>© {currentYear} Ashmit Cajla. All rights reserved.</div>
         <div style={{ color: '#555', fontSize: '0.9rem' }}>Patiala, Punjab, India</div>

@@ -34,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div style={{ position: 'relative', width: '100vw', minHeight: '100vh', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', minHeight: '100%', overflowX: 'hidden' }}>
       
       <Navbar />
 
@@ -73,7 +73,7 @@ function App() {
       </div>
 
       {/* --- LAYER 3: Your Actual Website Content (Absolute Top) --- */}
-      <main style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', gap: '60px' }}>
+      <main style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', gap: '00px' }}>
         
         <section id="hero" className="reveal active">
           <Hero />
